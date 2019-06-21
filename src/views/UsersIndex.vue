@@ -2,10 +2,7 @@
   <div class="home">
     <h1>All Users</h1>
     <div v-for="user in users">
-      <h2>{{ user.name }}</h2>
-      <img v-bind:src="user.url">
-      <p>Width: {{ user.width }}</p>
-      <p>Height: {{ user.height }}</p>
+      <h2>{{ user.first_name }}</h2>
     </div>
   </div>
 </template>
