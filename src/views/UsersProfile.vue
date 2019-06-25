@@ -19,6 +19,13 @@
       <input type="submit" value="Create Hangout">
     </form>
 
+<!--     <div>
+      Users With Similar Hangouts: <input v-model="userName" list="user-names">
+      <datalist id="user-names">
+        <option v-for="user in filterBy(users, userName, 'name')">{{user.name}}</option>
+      </datalist>
+    </div> -->
+
     <div>
       <h3>Username: {{ user.username }}</h3>
     </div>
