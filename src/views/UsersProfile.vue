@@ -43,15 +43,19 @@
     </div>
 
     <div>
-      <h3>Looking To Meet: {{ user.looking_for_gender }}'s for {{ user.looking_for_role }}</h3>
+      <h3>Looking To Meet: {{ user.looking_for_gender }} for {{ user.looking_for_role }}</h3>
     </div>
 
     <div>
       <h3>About: {{ user.about }}</h3>
     </div>
 
+<!--     <div>
+      <router-link to="/matches">See Matches</router-link>
+    </div>
+ -->
     <div>
-      <a href="/matches/:id">See Matches</a>
+      <router-link to="/users">See Search Results</router-link>
     </div>
 
 
