@@ -1,6 +1,6 @@
 <template>
   <div class="users-profile">
-    <h2>Hangout New Form</h2>
+    <h3>Hangout New Form</h3>
     <form v-on:submit.prevent="submit()">
       <div>
         Name: <input v-model="hangoutName" list="hangout-names">
@@ -20,10 +20,41 @@
     </form>
 
     <div>
-      <h2>My Hangouts</h2>
-
-      <p v-for="hangout in user.hangouts">{{ hangout.name }}</p>
+      <h3>Username: {{ user.username }}</h3>
     </div>
+
+    <div>
+      <h3>First Name: {{ user.first_name }}</h3>
+    </div>
+
+    <div>
+      <h3>Age: {{ user.age }}</h3>
+    </div>
+
+    <div>
+      <h3>Gender: {{ user.gender }}</h3>
+    </div>
+
+    <div>
+      <h3>Looking To Meet: {{ user.looking_for_gender }}'s for {{ user.looking_for_role }}</h3>
+    </div>
+
+    <div>
+      <h3>About: {{ user.about }}</h3>
+    </div>
+
+    <div>
+      <a href="/matches/:id">See Matches</a>
+    </div>
+
+
+    <div>
+      <h3>My Hangouts:</h3>
+      <ol>
+        <li v-for="hangout in user.hangouts">{{ hangout.name }}</li>      
+      </ol>
+    </div>
+
   </div>
 </template>
 
