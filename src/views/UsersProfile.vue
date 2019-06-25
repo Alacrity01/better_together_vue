@@ -3,7 +3,10 @@
     <h2>Hangout New Form</h2>
     <form v-on:submit.prevent="submit()">
       <div>
-        Name: <input v-model="hangoutName">
+        Name: <input v-model="hangoutName" list="hangout-names">
+        <datalist id="hangout-names">
+          <option v-for="hangout in filterBy(hangouts, hangoutName, 'name')">{{hangout.name}}</option>
+        </datalist>
       </div>
       <div>
         Address: <input v-model="hangoutAddress">
@@ -29,6 +32,7 @@
 </style>
 
 <script>
+import Vue2Filters from 'vue2-filters';
 var axios = require('axios');
 
 export default {
@@ -38,7 +42,9 @@ export default {
       hangoutAddress: "",
       hangoutCategoryId: "",
       categories: [],
-      user: {}
+      user: {},
+      hangouts: [],
+      hangoutsFilter: ""
     };
   },
   created: function() {
@@ -52,6 +58,12 @@ export default {
       .get("/api/categories")
       .then(response => {
         this.categories = response.data;
+      });
+
+    axios
+      .get("/api/hangouts")
+      .then(response => {
+        this.hangouts = response.data;
       });
   },
   methods: {
@@ -73,6 +85,7 @@ export default {
           this.hangoutCategoryId = "";
         });
     }
-  }
+  },
+  mixins: [Vue2Filters.mixin]
 };
 </script>

@@ -18,7 +18,7 @@ export default new Router({
   mode: 'history',
   hash: false,
   routes: [
-    {path: '/', name: 'home', component: UsersIndex },
+    {path: '/', name: 'home', component: Login },
 
     { path: "/signup", name: "signup", component: Signup },
     { path: "/login", name: "login", component: Login },
