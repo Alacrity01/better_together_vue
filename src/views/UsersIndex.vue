@@ -5,39 +5,21 @@
     
 
   
-  <transition-group class="index-users-username" appear enter-active-class="bounceInRight" leave-active-class="bounceOutLeft">
-      <div v-for="user in users" v-bind:key="user.username">
-        <h2 active-class="user.username">Username: {{ user.username }}</h2>
-        <h2>ID: {{ user.id }}</h2>
-        <h2>Age: {{ user.age }}</h2>
-        <h2>Gender: {{ user.gender }}</h2>
-        <div><button class="btn btn-dark m-1" v-on:click="confirm(user.id)">Confirm</button></div>
-        <div><button class="btn btn-dark m-1" v-on:click="deny()">Deny</button></div>
-        <div><button class="btn btn-dark m-1" v-on:click="saveForLater()">Save For Later</button></div>
-        <!-- <img class="index-users-img" v-bind:src="user.image_url" v-bind:alt="user.username"> -->
-        <h2><router-link v-bind:to="'/users/' + user.id">{{ user.username }}</router-link></h2>
-        <p>{{user.age}}</p>
-      </div>
-  </transition-group>
+    <transition-group class="index-users-username" appear enter-active-class="bounceInRight" leave-active-class="bounceOutLeft">
+        <div v-for="user in users" v-bind:key="user.username">
+          <h2 active-class="user.username"><router-link v-bind:to="'/users/' + user.id">{{ user.username }}</router-link></h2>
+          <h2>ID: {{ user.id }}</h2>
+          <h2>Age: {{ user.age }}</h2>
+          <h2>Gender: {{ user.gender }}</h2>
+          <div><button class="btn btn-dark m-1" v-on:click="confirm(user.id)">Confirm</button></div>
+          <div><button class="btn btn-dark m-1" v-on:click="deny(user.id)">Deny</button></div>
+          <div><button class="btn btn-dark m-1" v-on:click="saveForLater()">Save For Later</button></div>
+          <!-- <img class="index-users-img" v-bind:src="user.image_url" v-bind:alt="user.username"> -->
+          <h2><router-link v-bind:to="'/users/' + user.id">{{ user.username }}</router-link></h2>
+          <p>{{user.age}}</p>
+        </div>
+    </transition-group>
   </div>
-
-
-
-
-<!-- 
-  <div class="users-index">
-    <h1>Search Results:</h1>    
-    <div v-for="user in users">
-      <h2>First Name: {{ user.first_name }}</h2>
-      <h2>Age: {{ user.age }}</h2>
-      <h2>Gender: {{ user.gender }}</h2>
-    </div>
-  </div>
-
- -->
-
-
-
 </template>
 
 <style>
@@ -1831,7 +1813,19 @@ export default {
       }).catch(error => {
         this.errors = error.response.data.errors
       });
-    // deny: function()
+    },
+    deny: function(requestee_id) {
+      var params = {
+                   requester_id: this.current_user_id,
+                   approval: "false",
+                   requestee_id: requestee_id
+                   };
+      axios.post("http://localhost:3000/api/requests", params).then(response => {
+        console.log(response.data);
+            // logic to move to next person
+      }).catch(error => {
+        this.errors = error.response.data.errors
+      });
     }
   }
 };
