@@ -1,23 +1,19 @@
 <template>
   <div class="users-index">
-  
-
-    
-
-  
     <transition-group class="index-users-username" appear enter-active-class="bounceInRight" leave-active-class="bounceOutLeft">
-        <div v-for="user in users" v-bind:key="user.username">
-          <h2 active-class="user.username"><router-link v-bind:to="'/users/' + user.id">{{ user.username }}</router-link></h2>
-          <h2>ID: {{ user.id }}</h2>
-          <h2>Age: {{ user.age }}</h2>
-          <h2>Gender: {{ user.gender }}</h2>
-          <div><button class="btn btn-dark m-1" v-on:click="confirm(user.id)">Confirm</button></div>
-          <div><button class="btn btn-dark m-1" v-on:click="deny(user.id)">Deny</button></div>
-          <div><button class="btn btn-dark m-1" v-on:click="saveForLater()">Save For Later</button></div>
-          <!-- <img class="index-users-img" v-bind:src="user.image_url" v-bind:alt="user.username"> -->
-          <h2><router-link v-bind:to="'/users/' + user.id">{{ user.username }}</router-link></h2>
-          <p>{{user.age}}</p>
-        </div>
+      <div v-bind:key="users[selectedIndex].id">
+        <h2 active-class="users[selectedIndex].username"><router-link v-bind:to="'/users/' + users[selectedIndex].id">{{ users[selectedIndex].username }}</router-link></h2>
+        <h2>ID: {{ users[selectedIndex].id }}</h2>
+        <h2>Age: {{ users[selectedIndex].age }}</h2>
+        <h2>Gender: {{ users[selectedIndex].gender }}</h2>
+        <div><button class="btn btn-dark m-1" v-on:click="confirm(users[selectedIndex].id), nextPerson(selectedIndex)">Confirm</button></div>
+        <div><button class="btn btn-dark m-1" v-on:click="deny(users[selectedIndex].id), nextPerson(selectedIndex)">Deny</button></div>
+        <!-- <img class="index-users-img" v-bind:src="users[selectedIndex].image_url" v-bind:alt="users[selectedIndex].username"> -->
+        <h2>Age {{users[selectedIndex].age}}</h2>
+        <button v-on:click="previousPerson(selectedIndex)">Previous</button>
+        <button v-on:click="nextPerson(selectedIndex)">Next</button>
+
+      </div>
     </transition-group>
   </div>
 </template>
@@ -1787,22 +1783,23 @@ var axios = require ('axios');
 export default {
   data: function() {
     return {
-      users: [],
+      users: [{id: 0}],
       request: "",
-      current_user_id: 0
+      currentUserId: 0,
+      selectedIndex: 0
     };
   },
   created: function() {
     axios.get("/api/users?by_user=true&limit=10").then(response => {
       this.users = response.data;
     });
-    this.current_user_id = localStorage.getItem("user_id");
+    this.currentUserId = localStorage.getItem("user_id");
   },
   mixins: [Vue2Filters.mixin],
   methods: {
     confirm: function(requestee_id) {
       var params = {
-                   requester_id: this.current_user_id,
+                   requester_id: this.currentUserId,
                    approval: "true",
                    requestee_id: requestee_id
                    };
@@ -1816,7 +1813,7 @@ export default {
     },
     deny: function(requestee_id) {
       var params = {
-                   requester_id: this.current_user_id,
+                   requester_id: this.currentUserId,
                    approval: "false",
                    requestee_id: requestee_id
                    };
@@ -1826,6 +1823,20 @@ export default {
       }).catch(error => {
         this.errors = error.response.data.errors
       });
+    },
+    nextPerson: function(selectedIndex) {
+      if (this.selectedIndex < (this.users.length - 1)) {
+        this.selectedIndex++;
+      } else {
+        this.selectedIndex = 0;
+      }
+    },
+    previousPerson: function(selectedIndex) {
+      if (this.selectedIndex > 0) {
+        this.selectedIndex--;
+      } else {
+        this.selectedIndex = 9;
+      }
     }
   }
 };
