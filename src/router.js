@@ -12,6 +12,8 @@ import UsersEdit from './views/UsersEdit.vue';
 
 import UsersProfile from './views/UsersProfile.vue';
 
+import MatchesIndex from './views/MatchesIndex.vue';
+
 Vue.use(Router)
 
 export default new Router({
@@ -29,7 +31,7 @@ export default new Router({
     { path: '/users/:id', name: 'users-show', component: UsersShow },
     { path: '/users/:id/edit', name: 'users-edit', component: UsersEdit },
 
-    {path: '/users/:id/profile', name: 'users-profile', component: UsersProfile }
-
+    { path: '/users/:id/profile', name: 'users-profile', component: UsersProfile },
+    { path: '/matches', name: 'matches-index', component: MatchesIndex }
   ]
 })
