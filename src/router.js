@@ -14,6 +14,8 @@ import UsersProfile from './views/UsersProfile.vue';
 
 import MatchesIndex from './views/MatchesIndex.vue';
 
+import HangoutsShow from './views/HangoutsShow.vue';
+
 Vue.use(Router)
 
 export default new Router({
@@ -32,6 +34,7 @@ export default new Router({
     { path: '/users/:id/edit', name: 'users-edit', component: UsersEdit },
 
     { path: '/users/:id/profile', name: 'users-profile', component: UsersProfile },
-    { path: '/matches', name: 'matches-index', component: MatchesIndex }
+    { path: '/matches', name: 'matches-index', component: MatchesIndex },
+    { path: '/hangouts/:id', name: 'hangouts-show', component: HangoutsShow }
   ]
 })
