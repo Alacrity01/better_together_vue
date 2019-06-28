@@ -8,9 +8,9 @@ import Logout from "./views/Logout.vue";
 import UsersIndex from './views/UsersIndex.vue';
 import UsersNew from './views/UsersNew.vue';
 import UsersShow from './views/UsersShow.vue';
-import UsersEdit from './views/UsersEdit.vue';
 
 import UsersProfile from './views/UsersProfile.vue';
+import UsersEdit from './views/UsersEdit.vue';
 
 import MatchesIndex from './views/MatchesIndex.vue';
 
@@ -31,9 +31,10 @@ export default new Router({
     { path: '/users', name: 'users-index', component: UsersIndex },
     { path: '/users/new', name: 'users-new', component: UsersNew },
     { path: '/users/:id', name: 'users-show', component: UsersShow },
-    { path: '/users/:id/edit', name: 'users-edit', component: UsersEdit },
+    // { path: '/users/:id/edit', name: 'users-edit', component: UsersEdit },
 
     { path: '/users/:id/profile', name: 'users-profile', component: UsersProfile },
+    { path: '/users/:id/edit', name: 'users-edit', component: UsersEdit },
     { path: '/matches', name: 'matches-index', component: MatchesIndex },
     { path: '/hangouts/:id', name: 'hangouts-show', component: HangoutsShow }
   ]

@@ -1,5 +1,8 @@
 <template>
   <div class="users-profile">
+
+    <router-link class="btn btn-success m-1" v-bind:to="'/users/' + user.id + '/edit'">Edit Profile</router-link>
+    
     <h3>Hangout New Form</h3>
     <form v-on:submit.prevent="submit()">
       <div>
@@ -16,6 +19,7 @@
                     <option v-for="category in categories" v-bind:value="category.id">{{ category.name }}</option>
                   </select>
       </div>
+      
       <input type="submit" value="Create Hangout">
     </form>
 

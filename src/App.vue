@@ -3,8 +3,9 @@
     <div id="nav">
       <router-link to="/">Login</router-link> |
       <router-link to="/logout">Logout</router-link> |
-      <router-link to="/users/new">Signup</router-link>
-
+      <router-link to="/users/new">Signup</router-link> |
+      <router-link to="/matches">My Matches</router-link> |
+      <router-link v-bind:to="'/users/' + user_id + '/profile'">My Profile</router-link>
 
     </div>
     <router-view/>
@@ -32,3 +33,24 @@
   color: #42b983;
 }
 </style>
+
+<script>
+import Vue2Filters from 'vue2-filters';
+var axios = require('axios');
+var jwt = localStorage.getItem("jwt");
+if (jwt) {
+  axios.defaults.headers.common["Authorization"] = "Bearer " + jwt;
+}
+var user_id = localStorage.getItem("jwt");
+
+export default {
+  data: function() {
+    return {
+      user_id: 0
+    };
+  },
+  created: function() {
+    this.user_id = localStorage.getItem("user_id");
+  }
+};
+</script>
