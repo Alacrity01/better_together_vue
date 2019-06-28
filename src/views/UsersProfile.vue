@@ -19,16 +19,9 @@
                     <option v-for="category in categories" v-bind:value="category.id">{{ category.name }}</option>
                   </select>
       </div>
-      
+
       <input type="submit" value="Create Hangout">
     </form>
-
-<!--     <div>
-      Users With Similar Hangouts: <input v-model="userName" list="user-names">
-      <datalist id="user-names">
-        <option v-for="user in filterBy(users, userName, 'name')">{{user.name}}</option>
-      </datalist>
-    </div> -->
 
     <div>
       <h3>Username: {{ user.username }}</h3>
@@ -53,11 +46,6 @@
     <div>
       <h3>About: {{ user.about }}</h3>
     </div>
-
-<!--     <div>
-      <router-link to="/matches">See Matches</router-link>
-    </div>
- -->
     <div>
       <router-link to="/users">See Search Results</router-link>
     </div>
