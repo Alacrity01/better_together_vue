@@ -1,11 +1,6 @@
 <template>
   <div class="login">
     <div class="container">
-
-      <div><a href="/signup">Signup</a></div>
-      <div><a href="/login">Login</a></div>
-      <div><a href="/logout">Logout</a></div>
-
       <form v-on:submit.prevent="submit()">
         <h1>Login</h1>
         <ul>

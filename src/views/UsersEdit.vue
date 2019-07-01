@@ -3,7 +3,6 @@
     <h1>Edit Profile</h1>
     <div>Age: <input type="number" v-model="user.age"></div>
 
-    <!-- <div>Gender:<input type="text" v-model="user.gender"></div> -->
     <div>
       Gender: <select v-model="user.gender">
         <option value="prefer_not_to_say">Prefer not to say</option>
@@ -12,7 +11,6 @@
       </select>
     </div>
 
-    <!-- <div>Looking For (Gender): <input type="text" v-model="user.looking_for_gender"></div> -->
     <div>
       Looking For (Gender): <select v-model="user.looking_for_gender">
         <option value="both_men_and_women">No preference</option>
@@ -21,7 +19,6 @@
       </select>
     </div>
 
-    <!-- <div>Looking For (Romance/Friends): <input type="text" v-model="user.looking_for_role"></div> -->
     <div>
       Looking For (Romance/Friendship): <select v-model="user.looking_for_role">
         <option value="both_friendship_and_romance">Both Friendship and Romance</option>
@@ -39,11 +36,6 @@
 <script>
 import Vue2Filters from 'vue2-filters';
 var axios = require('axios');
-// var jwt = localStorage.getItem("jwt");
-// if (jwt) {
-//   axios.defaults.headers.common["Authorization"] = "Bearer " + jwt;
-// }
-// var user_id = localStorage.getItem("jwt");
 
 export default {
   data: function() {
@@ -80,6 +72,7 @@ export default {
         .patch("/api/users/" + user.id, params)
         .then(response => {
           this.currentUser = {};
+          this.$router.push(`/users/${user.id}/profile`);
       });
     }
   }

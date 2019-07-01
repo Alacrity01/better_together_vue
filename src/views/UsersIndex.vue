@@ -1,20 +1,20 @@
 <template>
   <div class="users-index">
-    <transition-group class="index-users-username" appear enter-active-class="bounceInRight" leave-active-class="bounceOutLeft">
+    <!-- <transition-group class="index-users-username" appear enter-active-class="bounceInRight" leave-active-class="bounceOutLeft"> -->
       <div v-bind:key="users[selectedIndex].id">
         <h2 active-class="users[selectedIndex].username"><router-link v-bind:to="'/users/' + users[selectedIndex].id">{{ users[selectedIndex].username }}</router-link></h2>
         <h2>ID: {{ users[selectedIndex].id }}</h2>
         <h2>Age: {{ users[selectedIndex].age }}</h2>
         <h2>Gender: {{ users[selectedIndex].gender }}</h2>
-        <div><button class="btn btn-dark m-1" v-on:click="confirm(users[selectedIndex].id), nextPerson(selectedIndex)">Confirm</button></div>
-        <div><button class="btn btn-dark m-1" v-on:click="deny(users[selectedIndex].id), nextPerson(selectedIndex)">Deny</button></div>
+        <div><button class="btn btn-dark m-1" v-on:click="confirm(users[selectedIndex].id)">Confirm</button></div>
+        <div><button class="btn btn-dark m-1" v-on:click="deny(users[selectedIndex].id)">Deny</button></div>
         <!-- <img class="index-users-img" v-bind:src="users[selectedIndex].image_url" v-bind:alt="users[selectedIndex].username"> -->
         <h2>Age {{users[selectedIndex].age}}</h2>
         <button v-on:click="previousPerson(selectedIndex)">Previous</button>
         <button v-on:click="nextPerson(selectedIndex)">Next</button>
 
       </div>
-    </transition-group>
+    <!-- </transition-group> -->
   </div>
 </template>
 
@@ -1805,8 +1805,10 @@ export default {
                    };
 
       axios.post("http://localhost:3000/api/requests", params).then(response => {
-        console.log(response.data);
-        // logic to move to next person
+        console.log(response.data);         
+      axios.get("/api/users?by_user=true&limit=10").then(response => {
+        this.users = response.data;
+      });
       }).catch(error => {
         this.errors = error.response.data.errors
       });
@@ -1819,7 +1821,9 @@ export default {
                    };
       axios.post("http://localhost:3000/api/requests", params).then(response => {
         console.log(response.data);
-            // logic to move to next person
+      axios.get("/api/users?by_user=true&limit=10").then(response => {
+        this.users = response.data;
+      });
       }).catch(error => {
         this.errors = error.response.data.errors
       });
