@@ -58,6 +58,10 @@
       </ol>
     </div>
 
+    <div v-for="image in user.images">
+      <img v-bind:src="image.file_url" alt="">
+    </div>
+
   </div>
 </template>
 
@@ -72,11 +76,14 @@ var axios = require('axios');
 export default {
   data: function() {
     return {
+      user: {
+        hangouts: [],
+        images: []
+      },
       hangoutName: "",
       hangoutAddress: "",
       hangoutCategoryId: "",
       categories: [],
-      user: {},
       hangouts: [],
       hangoutsFilter: ""
     };
