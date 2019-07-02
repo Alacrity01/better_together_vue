@@ -89,6 +89,7 @@ export default {
     };
   },
   created: function() {
+    this.currentUserId = localStorage.getItem("user_id");
     axios
       .get("/api/users/" + this.$route.params.id)
       .then(response => {

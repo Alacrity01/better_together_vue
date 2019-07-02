@@ -36,7 +36,7 @@
                           <router-link class="nav-link" to="/matches">My Matches</router-link> 
                         </li>
                         <li class="nav-item">
-                          <router-link class="nav-link" v-bind:to="'/users/' + user_id + '/profile'">My Profile</router-link>
+                          <router-link class="nav-link" v-bind:to="'/users/' + currentUserId + '/profile'">My Profile</router-link>
                         </li>
                       </ul>
                     </div>
@@ -46,7 +46,7 @@
                 <!-- //.col-12 -->
                 
                 <div class="col-12 d-none d-xl-block navbar-footer p-0">
-                    <p class="m-0">&copy; Robert Morley Jr.<br>All rights reserved 2019</p>
+                    <p class="m-0">&copy; Jeff Brinker<br>All rights reserved 2019</p>
                 </div>
                 <!-- //.col-12 -->
             </div>
@@ -63,7 +63,6 @@
         <!-- Main Start -->
         <div id="main" class="py-0">
                 <router-view/>
-            
             
             <!-- Footer Start -->
             <footer class="bg-gray-100 py-0 section">
@@ -106,7 +105,7 @@
                     
                     <div class="row border-top py-5">
                         <div class="col-12 text-center">
-                            <p class="mb-0 text-medium">&copy; Robert Morley Jr. All rights reserved 2019.</p>
+                            <p class="mb-0 text-medium">&copy; Jeff Brinker | All rights reserved 2019.</p>
                         </div>
                         <!-- //.col-12 -->
                     </div>
@@ -129,8 +128,9 @@
 </style>
 
 <script>
-import Vue2Filters from 'vue2-filters';
 var axios = require('axios');
+import Vue2Filters from 'vue2-filters';
+
 var jwt = localStorage.getItem("jwt");
 if (jwt) {
   axios.defaults.headers.common["Authorization"] = "Bearer " + jwt;
@@ -140,11 +140,11 @@ var user_id = localStorage.getItem("jwt");
 export default {
   data: function() {
     return {
-      user_id: 0
+      currentUserId: ""
     };
   },
   created: function() {
-    this.user_id = localStorage.getItem("user_id");
+    this.currentUserId = localStorage.getItem("user_id");
   }
 };
 </script>
