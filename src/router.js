@@ -8,7 +8,6 @@ import Logout from "./views/Logout.vue";
 import UsersIndex from './views/UsersIndex.vue';
 import UsersNew from './views/UsersNew.vue';
 import UsersShow from './views/UsersShow.vue';
-
 import UsersProfile from './views/UsersProfile.vue';
 import UsersEdit from './views/UsersEdit.vue';
 
@@ -17,6 +16,8 @@ import ImagesNew from './views/ImagesNew.vue';
 import MatchesIndex from './views/MatchesIndex.vue';
 
 import HangoutsShow from './views/HangoutsShow.vue';
+
+import MessagesIndex from './views/MessagesIndex.vue';
 
 Vue.use(Router)
 
@@ -40,6 +41,8 @@ export default new Router({
 
     { path: '/matches', name: 'matches-index', component: MatchesIndex },
 
-    { path: '/hangouts/:id', name: 'hangouts-show', component: HangoutsShow }
+    { path: '/hangouts/:id', name: 'hangouts-show', component: HangoutsShow },
+
+    { path: '/messages', name: 'messages-index', component: MessagesIndex }
   ]
 })

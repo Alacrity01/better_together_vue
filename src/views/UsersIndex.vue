@@ -35,14 +35,22 @@
                                   <!-- //.ml-lg-2 -->
                               </div>
                               <!-- //.col-lg-7 -->
-                              
                               <div class="col-lg-5 mt-5 mt-lg-0 order-lg-first">
                                 <div v-if="users[selectedIndex].images[0]">
-                                  <img v-bind:src="users[selectedIndex].images[0].file_url" alt="" class="img-fluid shadow"/>
+                                  <div v-if="users[selectedIndex].images[0].file_url">
+                                    <img v-bind:src="users[selectedIndex].images[0].file_url" alt="" class="request-image-show shadow"/>
+                                  </div>
+                                  <div v-else-if="users[selectedIndex].images[0].image_url">
+                                    <img v-bind:src="users[selectedIndex].images[0].image_url" alt="" class="request-image-show shadow"/>
+                                  </div>
+                                  <div v-else>
+                                    <img class="request-image-show shadow" src="https://i1.wp.com/crimsonems.org/wp-content/uploads/2017/10/profile-placeholder.gif?fit=250%2C250&ssl=1" alt="">
+                                  </div>
                                 </div>
                                 <div v-else>
-                                  <img src="https://i1.wp.com/crimsonems.org/wp-content/uploads/2017/10/profile-placeholder.gif?fit=250%2C250&ssl=1" alt="">
+                                  <img class="request-image-show shadow" src="https://i1.wp.com/crimsonems.org/wp-content/uploads/2017/10/profile-placeholder.gif?fit=250%2C250&ssl=1" alt="">
                                 </div>
+                                
                               </div>
                               <!-- //.col-lg-5 -->
                           </div>
@@ -123,7 +131,9 @@
 
 <style>
   
-
+.request-image-show {
+  width: 100%;
+}
 
 </style>
 
@@ -134,7 +144,12 @@ var axios = require ('axios');
 export default {
   data: function() {
     return {
-      users: [{id: 0}],
+      users: [
+              {
+                id: 0,
+                images: []
+              }
+              ],
       request: "",
       currentUserId: 0,
       selectedIndex: 0,

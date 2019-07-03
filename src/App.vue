@@ -69,7 +69,7 @@
                 <div class="container">
                     <div class="row pb-4 pb-lg-3 pt-5">
                         <div class="col-lg-8">
-                            <ul class="list-inline text-center text-lg-left text-medium text-md-large">
+<!--                             <ul class="list-inline text-center text-lg-left text-medium text-md-large">
                                 <li class="list-inline-item">
                                     <a href="#" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
                                 </li>
@@ -89,7 +89,7 @@
                                 <li class="list-inline-item">
                                     <a href="#" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                                 </li>
-                            </ul>
+                            </ul> -->
                         </div>
                         <!-- //.col-lg-8 -->
                         
