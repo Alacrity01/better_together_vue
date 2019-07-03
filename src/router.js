@@ -43,6 +43,6 @@ export default new Router({
 
     { path: '/hangouts/:id', name: 'hangouts-show', component: HangoutsShow },
 
-    { path: '/messages', name: 'messages-index', component: MessagesIndex }
+    { path: '/users/:id/messages', name: 'messages-index', component: MessagesIndex }
   ]
 })

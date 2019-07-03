@@ -1,6 +1,17 @@
 <template>
   <div class="messages-index">
-    <h1>{{ message }}</h1>
+    <h1></h1>
+    <div>
+      <textarea v-model="newMessageBody"></textarea>
+      <button v-on:click="createMessage()">Create Message</button>
+    </div>
+
+    <div>
+      <div v-for="message in messages">
+        <p><strong>{{ message.id }}</strong> : {{ message.created_at }}</p>
+        <p>{{ message.body }}</p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -8,19 +19,51 @@
 </style>
 
 <script>
+import axios from "axios";
+import ActionCable from "actioncable";
+
 export default {
   data: function() {
     return {
-      user: {},
+            messages: [],
+            newMessageBody: ""
     };
   },
   created: function() {
     axios
-      .get("/api/users/" + this.$route.params.id)
+      .get("/api/messages?recipient_id=" + this.$route.params.id)
       .then(response => {
-        this.user = response.data;
-      });
+        this.messages = response.data;
+
+      });   
+    
+    var cable = ActionCable.createConsumer("ws://localhost:3000/cable");
+    cable.subscriptions.create("MessagesChannel", {
+      connected: () => {
+        // Called when the subscription is ready for use on the server
+        console.log("Connected to MessagesChannel");
+      },
+      disconnected: () => {
+        // Called when the subscription has been terminated by the server
+      },
+      received: data => {
+        // Called when there's incoming data on the websocket for this channel
+        console.log("Data from MessagesChannel:", data);
+        this.messages.unshift(data); // update the messages in real time
+      }
+    });
   },
-  methods: {}
+  methods: {
+    createMessage: function() {
+      var params = {
+        body: this.newMessageBody,
+        recipient_id: this.$route.params.id
+      };
+      axios.post("/api/messages", params).then(response => {
+        this.newMessageBody = "";
+        // this.messages.unshift(response.data); (do this with ActionCable instead)
+      });
+    }
+  }
 };
 </script>
