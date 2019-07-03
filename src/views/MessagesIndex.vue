@@ -8,8 +8,10 @@
 
     <div>
       <div v-for="message in messages">
-        <p><strong>{{ message.id }}</strong> : {{ message.created_at }}</p>
-        <p>{{ message.body }}</p>
+        <div id="time">
+          <p><strong>{{ message.name }}</strong> : {{ message.body }}</p>
+          <p>{{ message.created_at }}</p>
+        </div>
       </div>
     </div>
   </div>
@@ -26,7 +28,7 @@ export default {
   data: function() {
     return {
             messages: [],
-            newMessageBody: ""
+            newMessageBody: ""      
     };
   },
   created: function() {
