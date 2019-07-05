@@ -29,6 +29,8 @@
     <div>First Name: <input type="text" v-model="user.first_name"></div>
     <div>Username: <input type="text" v-model="user.username"></div>
     <div>About: <textarea rows="4" cols="50" v-model="user.about"></textarea></div>
+    <div>Image: <input type="file" v-on:change="setFile($event)" ref="fileInput"></div>
+
     <button v-on:click="updateUser(user)">Update Profile</button>
   </div>
 </template>
@@ -40,10 +42,14 @@ var axios = require('axios');
 export default {
   data: function() {
     return {
-      user: {}
+      user: {},
+      currentUserId: "",
+      images: [],
+      file: ""
     };
   },
   created: function() {
+    this.currentUserId = localStorage.getItem("user_id");
     axios
       .get("/api/users/" + this.$route.params.id)
       .then(response => {
@@ -58,6 +64,11 @@ export default {
         this.currentUser = user;
       }
     },
+    setFile: function(event) {
+      if (event.target.files.length > 0) {
+        this.file = event.target.files[0];
+      }
+    },
     updateUser: function(user) {
       var params = {
         username: user.username,
@@ -68,11 +79,29 @@ export default {
         looking_for_gender: user.looking_for_gender,
         about: user.about    
       };
+
+      var imageParams = new FormData();
+      imageParams.append("user_id", this.currentUserId);
+      imageParams.append("file", this.file);
+
+      // axios
+      //   .post("http://localhost:3000/api/images", imageParams)
+      //   .then(response => {
+      //     this.$router.push("/users/" + this.currentUserId + "/profile");
+      //   });
+
       axios
-        .patch("/api/users/" + user.id, params)
-        .then(response => {
-          this.currentUser = {};
-          this.$router.push(`/users/${user.id}/profile`);
+        .post("http://localhost:3000/api/images", imageParams)
+        axios
+          .patch("/api/users/" + user.id, params)        
+          .then(response => {
+            this.currentUser = {};
+            this.$router.push(`/users/${user.id}/profile`);
+          axios
+            .get("/api/users/" + this.$route.params.id)
+            .then(response => {
+              this.user = response.data;
+            });
       });
     }
   }

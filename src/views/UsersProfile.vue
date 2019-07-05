@@ -54,7 +54,11 @@
     <div>
       <h3>My Hangouts:</h3>
       <ol>
-        <li v-for="hangout in user.hangouts">{{ hangout.name }}</li>      
+        <!-- <li v-for="hangout in user.hangouts">{{ hangout.name }}</li>    -->
+        <div v-for="user_hangout in user.user_hangouts">
+        <li>{{ user_hangout.hangout.name }}</li>
+        <button v-on:click="destroyUserHangout(user_hangout)">Remove Hangout</button>
+      </div>
       </ol>
     </div>
 
@@ -77,7 +81,7 @@ export default {
   data: function() {
     return {
       user: {
-        hangouts: [],
+        user_hangouts: [],
         images: []
       },
       hangoutName: "",
@@ -121,10 +125,24 @@ export default {
       axios
         .post("/api/hangouts", paramsHash)
         .then(response => {
-          this.user.hangouts.push(response.data);
+          this.hangouts.push(response.data);
           this.hangoutName = "";
           this.hangoutAddress = "";
           this.hangoutCategoryId = "";
+          
+          axios
+            .get("/api/users/" + this.$route.params.id)
+            .then(response => {
+              this.user = response.data;
+            });
+        });
+    },
+    destroyUserHangout: function(userHangout) {
+      axios
+        .delete("/api/user_hangouts/" + userHangout.id)
+        .then(response => {
+          var index = this.user.user_hangouts.indexOf(userHangout);
+          this.user.user_hangouts.splice(index, 1);
         });
     }
   },

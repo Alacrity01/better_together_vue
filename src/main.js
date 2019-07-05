@@ -10,7 +10,6 @@ var jwt = localStorage.getItem("jwt");
 if (jwt) {
   axios.defaults.headers.common["Authorization"] = "Bearer " + jwt;
 }
-var user_id = localStorage.getItem("jwt");
 
 Vue.config.productionTip = false;
 

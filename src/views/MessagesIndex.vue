@@ -2,8 +2,13 @@
   <div class="messages-index">
     <h1></h1>
     <div>
-      <textarea v-model="newMessageBody"></textarea>
-      <button v-on:click="createMessage()">Create Message</button>
+      <h1>New Message</h1>
+       <form v-on:submit.prevent="createMessage()">
+        <div class="form-group">
+          <input class="form-control" type="text" v-model="newMessageBody"></input>
+        </div>
+         <input class="btn btn-primary" type="submit" value="Create Message">
+       </form>
     </div>
 
     <div>
@@ -22,7 +27,7 @@
 
 <script>
 import axios from "axios";
-import ActionCable from "actioncable";
+import ActionCable from 'actioncable';
 
 export default {
   data: function() {
@@ -36,24 +41,25 @@ export default {
       .get("/api/messages?recipient_id=" + this.$route.params.id)
       .then(response => {
         this.messages = response.data;
-
       });   
-    
+
+      console.log("test line 1 reached");
     var cable = ActionCable.createConsumer("ws://localhost:3000/cable");
+      console.log("test line 2 reached");
+
     cable.subscriptions.create("MessagesChannel", {
       connected: () => {
-        // Called when the subscription is ready for use on the server
-        console.log("Connected to MessagesChannel");
+        console.log("Connected to API");
       },
       disconnected: () => {
-        // Called when the subscription has been terminated by the server
+        console.log("Disconnected from API");
       },
       received: data => {
-        // Called when there's incoming data on the websocket for this channel
-        console.log("Data from MessagesChannel:", data);
-        this.messages.unshift(data); // update the messages in real time
+        console.log("API is talking", data);
+        this.messages.unshift(data);
       }
-    });
+    })
+      console.log("test line 3 reached");
   },
   methods: {
     createMessage: function() {
@@ -61,9 +67,10 @@ export default {
         body: this.newMessageBody,
         recipient_id: this.$route.params.id
       };
+
       axios.post("/api/messages", params).then(response => {
         this.newMessageBody = "";
-        // this.messages.unshift(response.data); (do this with ActionCable instead)
+        this.messages.unshift(response.data);// (do this with ActionCable instead)  
       });
     }
   }

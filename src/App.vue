@@ -131,11 +131,6 @@
 var axios = require('axios');
 import Vue2Filters from 'vue2-filters';
 
-var jwt = localStorage.getItem("jwt");
-if (jwt) {
-  axios.defaults.headers.common["Authorization"] = "Bearer " + jwt;
-}
-var user_id = localStorage.getItem("jwt");
 
 export default {
   data: function() {
