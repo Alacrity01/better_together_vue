@@ -127,7 +127,9 @@
 </template>
 
 <style>
-
+section {
+  min-height: 625px;
+}
 </style>
 
 <script>

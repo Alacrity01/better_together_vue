@@ -1,8 +1,8 @@
 <template>
-  <div class="users-show">
+
 
     <!-- Section - Expertise Start -->
-    <section id="expertise" class="bg-white pb-0">
+    <section id="expertise" class="users-show bg-white pb-0">
         <div class="container">
             <div class="row justify-content-center mb-5">
                 <div class="col-lg-7 text-center">
@@ -28,7 +28,7 @@
     </section>
     <!-- //Section - Expertise End -->
 
-  </div>
+
 </template>
 
 <style>
