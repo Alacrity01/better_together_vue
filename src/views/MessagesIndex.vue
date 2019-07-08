@@ -33,33 +33,34 @@ export default {
   data: function() {
     return {
             messages: [],
-            newMessageBody: ""      
+            newMessageBody: "",
+            currentUserId: 0   
     };
   },
   created: function() {
+    this.currentUserId = localStorage.getItem("user_id");
     axios
       .get("/api/messages?recipient_id=" + this.$route.params.id)
       .then(response => {
         this.messages = response.data;
-      });   
+      });
 
-      console.log("test line 1 reached");
     var cable = ActionCable.createConsumer("ws://localhost:3000/cable");
-      console.log("test line 2 reached");
-
     cable.subscriptions.create("MessagesChannel", {
       connected: () => {
-        console.log("Connected to API");
+        console.log("connected to websocket");
       },
       disconnected: () => {
-        console.log("Disconnected from API");
+
       },
       received: data => {
-        console.log("API is talking", data);
-        this.messages.unshift(data);
+        console.log("test line 1 reached");
+          console.log(data);
+        if (data.recipient_id == this.currentUserId) {
+          this.messages.unshift(data);
+        }
       }
-    })
-      console.log("test line 3 reached");
+    });
   },
   methods: {
     createMessage: function() {
