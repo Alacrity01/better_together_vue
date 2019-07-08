@@ -1,8 +1,6 @@
 <template>  
-  <div class="users-index">
-
   <!-- Section - Home Start -->
-  <section id="home" class="bg-img-cover pb-0">
+  <section id="home" class="users-index bg-img-cover pb-0">
       <div class="container">
           <div class="row">
               <div class="col-12">
@@ -94,7 +92,7 @@
               <!-- //.col-12 -->
           </div>
           <!-- //.row -->
-      </div>
+        </div>
       <!-- //.container -->
   </section>
   <!-- //Section - Home End -->
