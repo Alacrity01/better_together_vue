@@ -36,11 +36,11 @@
     </div>
 
     <div>
-      <h3>Gender: {{ user.gender }}</h3>
+      <h3>Gender: {{ user.friendly_gender }}</h3>
     </div>
 
     <div>
-      <h3>Looking To Meet: {{ user.looking_for_gender }} for {{ user.looking_for_role }}</h3>
+      <h3>Looking To Meet {{ user.friendly_looking_for_gender }} for {{ user.friendly_looking_for_role }}</h3>
     </div>
 
     <div>
@@ -64,6 +64,7 @@
 
     <div v-for="image in user.images">
       <img v-bind:src="image.file_url" alt="">
+      <button v-on:click="destroyImage(image)">Remove Image</button>
     </div>
 
   </div>
@@ -143,6 +144,14 @@ export default {
         .then(response => {
           var index = this.user.user_hangouts.indexOf(userHangout);
           this.user.user_hangouts.splice(index, 1);
+        });
+    },
+    destroyImage: function(image) {
+      axios
+        .delete("/api/images/" + image.id)
+        .then(response => {
+          var index = this.user.images.indexOf(image);
+          this.user.images.splice(index,1);
         });
     }
   },

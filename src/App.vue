@@ -30,10 +30,10 @@
                           <router-link class="nav-link" to="/logout">Logout</router-link> 
                         </li>
                         <li class="nav-item">
-                          <router-link class="nav-link" to="/users/new">Signup</router-link> 
+                          <router-link class="nav-link" to="/matches">My Matches</router-link> 
                         </li>
                         <li class="nav-item">
-                          <router-link class="nav-link" to="/matches">My Matches</router-link> 
+                          <router-link class="nav-link" to="/users">See Possible Matches</router-link>                      
                         </li>
                         <li class="nav-item">
                           <router-link class="nav-link" v-bind:to="'/users/' + currentUserId + '/profile'">My Profile</router-link>
@@ -46,7 +46,10 @@
                 <!-- //.col-12 -->
                 
                 <div class="col-12 d-none d-xl-block navbar-footer p-0">
-                    <p class="m-0">&copy; Jeff Brinker<br>All rights reserved 2019</p>
+                    <div class ="navbar-nav navbar-nav-yellow">
+                      <router-link class="nav-link" to="/signup">Signup</router-link>                         
+                    </div>                              
+                  <!-- <p class="m-0">&copy; Jeff Brinker<br>All rights reserved 2019</p> -->
                 </div>
                 <!-- //.col-12 -->
             </div>

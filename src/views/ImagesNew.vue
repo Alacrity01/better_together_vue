@@ -40,7 +40,7 @@ export default {
     submit: function() {
       var params = new FormData();
       params.append("user_id", this.currentUserId);
-      params.append("file", this.file);
+      params.append("file_url", this.file);
 
       axios
         .post("http://localhost:3000/api/images", params)
