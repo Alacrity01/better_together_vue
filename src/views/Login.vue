@@ -1,23 +1,42 @@
 <template>
-  <div class="login">
+<!-- //Section - Login Begin -->
+  <section id="contact" class="">
     <div class="container">
-      <form v-on:submit.prevent="submit()">
-        <h1>Login</h1>
-        <ul>
-          <li class="text-danger" v-for="error in errors">{{ error }}</li>
-        </ul>
-        <div class="form-group">
-          <label>Email:</label>
-          <input type="email" class="form-control" v-model="email">
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-7 text-center">
+                <h3 class="font-alt letter-spacing-3 mb-0 text-extra-large-2 text-uppercase text-yellow">Login</h3>
+                <p class="font-w-700 letter-spacing-1 text-gray-600 text-medium text-uppercase bg-light rounded">Because a fun time is always  <img src="img/logo.png" alt=""/>
+                </p>
+                <span class="bg-pink mt-1 mx-auto sep-line-medium-thick"></span>
+            </div>
         </div>
-        <div class="form-group">
-          <label>Password:</label>
-          <input type="password" class="form-control" v-model="password">
+        
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="pr-lg-5">
+                </div>
+            </div>
+            
+            <div class="col-lg-6 mt-5 mt-lg-0">
+                <form v-on:submit.prevent="submit()">
+                    <div class="form-group">
+                        <input type="email" v-model="email" id="email" class="form-control form-control-purple" placeholder="Your email" autocomplete="off">
+                    </div>
+                    <!-- //.form-group -->
+                    <div class="form-group">
+                        <input type="password" v-model="password" id="password" class="form-control form-control-purple" placeholder="Your Password" autocomplete="off">
+                    </div>
+                    <button type="submit" class="btn btn-purple btn-small mt-1 shadow" value="Submit">Submit <i class="fas fa-paper-plane"></i></button>
+                </form>
+            </div>
+            <!-- //.col-lg-7 -->
         </div>
-        <input type="submit" class="btn btn-primary" value="Submit">
-      </form>
+        <!-- //.row -->
+      </div>
+      <!-- //.container -->
     </div>
-  </div>
+  </section>
+<!-- //Section - Login End -->
 </template>
 
 <script>

@@ -1,73 +1,88 @@
 <template>
-  <div class="users-profile">
+      <!-- Section - Expertise Start -->
+    <section id="expertise" class="users-profile pb-0">
+        <div class="container">
+            <div class="row justify-content-center mb-5">
+                <div class="col-lg-7 text-center">
+                    <h3 class="font-alt letter-spacing-3 mb-0 text-extra-large-2 text-uppercase text-green">{{ user.username }}</h3>
+                    <router-link class="btn btn-success m-4" v-bind:to="'/users/' + user.id + '/edit'">Edit Profile</router-link>
 
-    <router-link class="btn btn-success m-1" v-bind:to="'/users/' + user.id + '/edit'">Edit Profile</router-link>
-    
-    <h3>Hangout New Form</h3>
-    <form v-on:submit.prevent="submit()">
-      <div>
-        Name: <input v-model="hangoutName" list="hangout-names">
-        <datalist id="hangout-names">
-          <option v-for="hangout in filterBy(hangouts, hangoutName, 'name')">{{hangout.name}}</option>
-        </datalist>
-      </div>
-      <div>
-        Address: <input v-model="hangoutAddress">
-      </div>
-      <div>
-        Category: <select v-model="hangoutCategoryId">
-                    <option v-for="category in categories" v-bind:value="category.id">{{ category.name }}</option>
-                  </select>
-      </div>
+                    <p class="font-w-700 letter-spacing-1 text-light text-medium text-uppercase">{{ user.about }}  •  Age: {{ user.age }}</p>
+                    <p class="font-w-700 letter-spacing-1 text-light text-medium text-uppercase">{{ user.friendly_gender }} looking to meet {{ user.friendly_looking_for_gender }} for {{ user.friendly_looking_for_role }}</p>
 
-      <input type="submit" value="Create Hangout">
-    </form>
+                    <span class="bg-pink mt-1 mx-auto sep-line-medium-thick"></span>
+                </div>
+                <!-- //.col-lg-7 -->
+            </div>
+            <!-- //.row -->
+            
+            <div class="row justify-content-center mb-5">
+                <div v-for="image in user.images" class="col-md-6 col-lg-4 mt-5 text-center">
+                    <img class="img-fluid" v-bind:src="image.default_image_url" alt="">
+                    <button class="btn-sm btn-pink mt-2" v-on:click="destroyImage(image)">Remove</button>
+                </div>
+                <!-- //.col-md-6 -->
+            </div>
 
-    <div>
-      <h3>Username: {{ user.username }}</h3>
-    </div>
+<div class="container text-center">
+  
+            <div class="row justify-content-center mb-5">
+              <div class="col-lg-7 text-center">
+                 <h3 class="font-alt letter-spacing-3 mb-0 text-extra-large-2 text-uppercase text-yellow">My Hangouts</h3>
+                 <span class="bg-pink mt-1 mx-auto sep-line-medium-thick"></span>        
+              </div>
+            </div>
+            <div class="row">
+                  <div v-for="user_hangout in user.user_hangouts" class="col-md-6 col-lg-4 mt-2 text-light text-right">{{ user_hangout.hangout.name }}<button class="btn-sm btn-pink ml-2" v-on:click="destroyUserHangout(user_hangout)">Remove</button></div>
+            </div>
+          <!-- </div> -->
+            </div>
 
-    <div>
-      <h3>First Name: {{ user.first_name }}</h3>
-    </div>
+              <div class="container">
+                  <div class="row justify-content-center mb-5 mt-5">
+                      <div class="col-lg-7 text-center">
+                          <h3 class="font-alt letter-spacing-3 mb-0 text-extra-large-2 text-uppercase text-yellow">Add a Hangout</h3>
+                          <span class="bg-pink mt-1 mx-auto sep-line-medium-thick"></span>
+                      </div>
+                      <!-- //.col-lg-7 -->
+                  </div>
+                  <!-- //.row -->
+                  
+                  <div class="row">
+                      <!-- //.col-lg-5 -->
+                      
+                      <div class="col-6 offset-3 mt-5 mb-5 mt-lg-0 text-light">
+                          <form v-on:submit.prevent="submit()">
+                              <div class="form-group">
+                                  Name: <input v-model="hangoutName" class="form-control form-control-purple" list="hangouts-names">
+                              </div>
+                              <datalist id="hangout-names">
+                                <option v-for="hangout in filterBy(hangouts, hangoutName, 'name')">{{hangout.name}}</option>
+                              </datalist>
+                              <!-- //.form-group -->
 
-    <div>
-      <h3>Age: {{ user.age }}</h3>
-    </div>
+                              <div class="form-group">
+                                  Address: <input v-model="hangoutAddress" class="form-control form-control-purple" >
+                              </div>
 
-    <div>
-      <h3>Gender: {{ user.friendly_gender }}</h3>
-    </div>
-
-    <div>
-      <h3>Looking To Meet {{ user.friendly_looking_for_gender }} for {{ user.friendly_looking_for_role }}</h3>
-    </div>
-
-    <div>
-      <h3>About: {{ user.about }}</h3>
-    </div>
-    <div>
-      <router-link to="/users">See Search Results</router-link>
-    </div>
+                              <div class="form-group">
+                                  Category: <select v-model="hangoutCategoryId" class="form-control form-control-purple">
+                                  <option v-for="category in categories" v-bind:value="category.id">{{ category.name }}</option></select>
+                              </div>
 
 
-    <div>
-      <h3>My Hangouts:</h3>
-      <ol>
-        <!-- <li v-for="hangout in user.hangouts">{{ hangout.name }}</li>    -->
-        <div v-for="user_hangout in user.user_hangouts">
-        <li>{{ user_hangout.hangout.name }}</li>
-        <button v-on:click="destroyUserHangout(user_hangout)">Remove Hangout</button>
-      </div>
-      </ol>
-    </div>
-
-    <div v-for="image in user.images">
-      <img v-bind:src="image.file_url" alt="">
-      <button v-on:click="destroyImage(image)">Remove Image</button>
-    </div>
-
-  </div>
+                              <button type="submit" class="btn btn-purple btn-small mt-1 shadow" value="Submit">Submit <i class="fas fa-paper-plane"></i></button>
+                          </form>
+                      </div>
+                      <!-- //.col-lg-7 -->
+                  </div>
+                  <!-- //.row -->
+              </div>
+            <!-- //.row -->
+        </div>
+        <!-- //.container -->
+    </section>
+    <!-- //Section - Expertise End -->
 </template>
 
 <style>

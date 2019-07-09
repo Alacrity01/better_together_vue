@@ -5,7 +5,7 @@
           <div class="row">
               <div class="col-12">
                   <div class="profile-card">
-                      <div class="profile-card-body bg-white p-4 p-sm-5 rounded-top shadow-lg">
+                      <div class="profile-card-body p-4 p-sm-5 rounded-top shadow-lg">
                           <span class="badge bg-teal m-4 text-white"></span>
                           
                           <div class="row">

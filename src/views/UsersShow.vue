@@ -2,13 +2,13 @@
 
 
     <!-- Section - Expertise Start -->
-    <section id="expertise" class="users-show bg-white pb-0">
+    <section id="expertise" class="users-show pb-0">
         <div class="container">
             <div class="row justify-content-center mb-5">
                 <div class="col-lg-7 text-center">
-                    <h3 class="font-alt letter-spacing-3 mb-0 text-extra-large-2 text-uppercase">{{ user.username }}</h3>
-                    <p class="font-w-700 letter-spacing-1 text-gray-600 text-medium text-uppercase">{{ user.about }}  •  Age: {{ user.age }}</p>
-                    <p class="font-w-700 letter-spacing-1 text-gray-600 text-medium text-uppercase">{{ user.friendly_gender }} looking to meet {{ user.friendly_looking_for_gender }} for {{ user.friendly_looking_for_role }}</p>
+                    <h3 class="font-alt letter-spacing-3 mb-0 text-extra-large-2 text-uppercase text-green">{{ user.username }}</h3>
+                    <p class="font-w-700 letter-spacing-1 text-light text-medium text-uppercase">{{ user.about }}  •  Age: {{ user.age }}</p>
+                    <p class="font-w-700 letter-spacing-1 text-light text-medium text-uppercase">{{ user.friendly_gender }} looking to meet {{ user.friendly_looking_for_gender }} for {{ user.friendly_looking_for_role }}</p>
 
                     <span class="bg-pink mt-1 mx-auto sep-line-medium-thick"></span>
                 </div>

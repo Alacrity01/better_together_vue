@@ -61,18 +61,18 @@
     
     
     <!-- Wrapper Start -->
-    <div id="wrapper" class="bg-white p-0">
+    <div id="wrapper" class="p-0">
         
         <!-- Main Start -->
         <div id="main" class="py-0">
                 <router-view/>
             
             <!-- Footer Start -->
-            <footer class="bg-gray-100 py-0 section">
+            <footer class="py-0 section">
                 <div class="container">
                     <div class="row pb-4 pb-lg-3 pt-5">
                         <div class="col-lg-8">
-<!--                             <ul class="list-inline text-center text-lg-left text-medium text-md-large">
+                            <ul class="list-inline text-center text-lg-left text-medium text-md-large">
                                 <li class="list-inline-item">
                                     <a href="#" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
                                 </li>
@@ -92,14 +92,14 @@
                                 <li class="list-inline-item">
                                     <a href="#" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                                 </li>
-                            </ul> -->
+                            </ul>
                         </div>
                         <!-- //.col-lg-8 -->
                         
                         <div class="col-lg-4 mt-3 mt-lg-0">
-                            <div class="footer-brand opacity-8 text-center text-lg-right">
+<!--                             <div class="footer-brand opacity-8 text-center text-lg-right">
                                 <img src="img/logo.png" alt=""/>
-                            </div>
+                            </div> -->
                             <!-- //.footer-brand -->
                         </div>
                         <!-- //.col-lg-4 -->
@@ -128,7 +128,7 @@
 
 <style>
 section {
-  min-height: 625px;
+  min-height: 900px;
 }
 </style>
 
