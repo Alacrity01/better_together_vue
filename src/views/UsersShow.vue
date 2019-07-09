@@ -2,7 +2,7 @@
 
 
     <!-- Section - Expertise Start -->
-    <section id="expertise" class="users-show pb-0">
+    <section id="expertise" class="users-show pb-0 mb-5">
         <div class="container">
             <div class="row justify-content-center mb-5">
                 <div class="col-lg-7 text-center">
@@ -18,7 +18,7 @@
             
             <div class="row">
                 <div v-for="image in user.images" class="col-md-6 col-lg-4 mt-5 text-center">
-                    <img class="img-fluid" v-bind:src="image.default_image_url" alt="">
+                    <img class="img-fluid my-image" v-bind:src="image.default_image_url" alt="">
                 </div>
                 <!-- //.col-md-6 -->
             </div>

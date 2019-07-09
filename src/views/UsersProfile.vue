@@ -18,7 +18,7 @@
             
             <div class="row justify-content-center mb-5">
                 <div v-for="image in user.images" class="col-md-6 col-lg-4 mt-5 text-center">
-                    <img class="img-fluid" v-bind:src="image.default_image_url" alt="">
+                    <img class="img-fluid my-image" v-bind:src="image.default_image_url" alt="">
                     <button class="btn-sm btn-pink mt-2" v-on:click="destroyImage(image)">Remove</button>
                 </div>
                 <!-- //.col-md-6 -->
@@ -86,7 +86,10 @@
 </template>
 
 <style>
-
+.my-image {
+  width: 100%;
+  height: auto;
+}
 </style>
 
 <script>

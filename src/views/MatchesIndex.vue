@@ -18,7 +18,7 @@
                         <div class="gallery-grid grid-col-2 gutter-wide row">
                           <div class="gallery-item col-6" v-for="match in matches">
                               <figure>
-                                  <img v-bind:src="match.default_image_url" alt="" class="img-fluid">
+                                  <img v-bind:src="match.default_image_url" alt="" class="img-fluid my-image">
                                   
                                   <div class="figure-link">
                                       <!-- Full Preview -->

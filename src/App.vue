@@ -74,24 +74,29 @@
                         <div class="col-lg-8">
                             <ul class="list-inline text-center text-lg-left text-medium text-md-large">
                                 <li class="list-inline-item">
-                                    <a href="#" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+                                    <span><i class="fab fa-facebook"></i></span>
                                 </li>
                                 <li class="list-inline-item">
-                                    <a href="#" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+                                    <span><i class="fab fa-twitter"></i></span>
                                 </li>
                                 <li class="list-inline-item">
-                                    <a href="#" target="_blank" title="Behance"><i class="fab fa-behance"></i></a>
+                                    <span><i class="fab fa-behance"></i></span>
                                 </li>
                                 <li class="list-inline-item">
-                                    <a href="#" target="_blank" title="Google Plus"><i class="fab fa-google-plus-g"></i></a>
+                                    <span><i class="fab fa-google-plus-g"></i></span>
                                 </li>
 
                                 <li class="list-inline-item">
-                                    <a href="#" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                                    <span><i class="fab fa-instagram"></i></span>
                                 </li>
                                 <li class="list-inline-item">
-                                    <a href="#" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                                    <span><i class="fab fa-linkedin-in"></i></span>
                                 </li>
+                                <li class="list-inline-item">
+                                    <span v-on:click="resetDemo()"><i class="fab fa fa-balance-scale"></i></span>
+                                </li>
+
+                                
                             </ul>
                         </div>
                         <!-- //.col-lg-8 -->
@@ -145,6 +150,15 @@ export default {
   },
   created: function() {
     this.currentUserId = localStorage.getItem("user_id");
+  },
+  methods: {
+    resetDemo: function() {
+        axios
+          .get("/api/reset_demo")
+          .then(response => {
+            console.log("reset successful");
+          });
+    }
   }
 };
 </script>

@@ -12,13 +12,13 @@
                               <div class="col-lg-7">
                                   <div class="ml-lg-2 ml-xl-3">
                                       <div class="border-bottom pt-4 pt-sm-0">
-                                        <router-link v-bind:to="'/users/' + users[selectedIndex].id" class="btn btn-pink btn-small mt-4 page-scroll shadow">Full Profile</router-link>
-                                          <h3 class="font-alt letter-spacing-1 mb-0 text-extra-large-2 text-uppercase">{{ users[selectedIndex].username }}</h3>
-                                          <p class="mt-1 font-w-700 letter-spacing-1 text-gray-600 text-medium text-uppercase">{{ users[selectedIndex].about }}</p>
+                                        <router-link v-bind:to="'/users/' + users[selectedIndex].id" class="btn btn-yellow btn-small mt-4 page-scroll shadow">Full Profile</router-link>
+                                          <h3 class="font-alt letter-spacing-1 mb-0 text-extra-large-2 text-uppercase text-green">{{ users[selectedIndex].username }}</h3>
+                                          <p class="mt-1 font-w-700 letter-spacing-1 text-pink text-medium text-uppercase">{{ users[selectedIndex].about }}</p>
                                       </div>
                                       <!-- //.border-bottom -->
 
-                                      <ul class="list-unstyled mt-4 text-medium">
+                                      <ul class="list-unstyled mt-4 text-medium text-white">
                                           <li><span>First Name: </span>{{ users[selectedIndex].first_name }}</li>
                                           <li><span>Age: </span>{{ users[selectedIndex].age }}</li>
                                           <li><span>Gender: </span>{{ users[selectedIndex].gender }}</li>
@@ -61,23 +61,13 @@
                               <div class="col-12 text-center">
                                   <ul class="list-inline text-medium text-md-large">
                                       <li class="list-inline-item">
-                                          <a href="#" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+                                          <span class="text-white"><i class="fab fa-facebook"></i></span>
                                       </li>
                                       <li class="list-inline-item">
-                                          <a href="#" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+                                          <span class="text-white"><i class="fab fa-twitter"></i></span>
                                       </li>
                                       <li class="list-inline-item">
-                                          <a href="#" target="_blank" title="Behance"><i class="fab fa-behance"></i></a>
-                                      </li>
-                                      <li class="list-inline-item">
-                                          <a href="#" target="_blank" title="Google Plus"><i class="fab fa-google-plus-g"></i></a>
-                                      </li>
-                                      
-                                      <li class="list-inline-item">
-                                          <a href="#" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-                                      </li>
-                                      <li class="list-inline-item">
-                                          <a href="#" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                                          <span class="text-white"><i class="fab fa-instagram"></i></span>
                                       </li>
                                   </ul>
                               </div>

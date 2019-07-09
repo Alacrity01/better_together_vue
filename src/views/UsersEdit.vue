@@ -53,7 +53,7 @@
             </div>
             
             <div class="col-lg-6 mt-5 mt-lg-0">
-                <form v-on:submit.prevent="submit()">
+                <form v-on:submit.prevent="updateUser(user)">
                     
                     <div class="form-group text-light">                    
                         Age: <input type="number" v-model="user.age" class="form-control form-control-purple">
@@ -159,29 +159,20 @@ export default {
         about: user.about    
       };
 
-      var imageParams = new FormData();
-      imageParams.append("user_id", this.currentUserId);
-      imageParams.append("file", this.file);
+      if (this.file) {
+        var imageParams = new FormData();
+        imageParams.append("user_id", this.currentUserId);
+        imageParams.append("file", this.file);
 
-      // axios
-      //   .post("http://localhost:3000/api/images", imageParams)
-      //   .then(response => {
-      //     this.$router.push("/users/" + this.currentUserId + "/profile");
-      //   });
+        axios.post("http://localhost:3000/api/images", imageParams);
+      }
 
       axios
-        .post("http://localhost:3000/api/images", imageParams)
-        axios
-          .patch("/api/users/" + user.id, params)        
-          .then(response => {
-            this.currentUser = {};
-            this.$router.push(`/users/${user.id}/profile`);
-          axios
-            .get("/api/users/" + this.$route.params.id)
-            .then(response => {
-              this.user = response.data;
-            });
-      });
+        .patch("/api/users/" + user.id, params)        
+        .then(response => {
+          this.currentUser = {};
+          this.$router.push(`/users/${user.id}/profile`);
+        });
     }
   }
 };
