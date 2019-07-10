@@ -14,7 +14,7 @@
                     </button>
 
                     <a class="navbar-brand page-scroll" href="#profile">
-                        <img src="img/logo.png" alt=""/>
+                        <img src="/img/logo.png" alt=""/>
                     </a>
                 </div>
                 <!-- //.col-12 -->
@@ -102,9 +102,9 @@
                         <!-- //.col-lg-8 -->
                         
                         <div class="col-lg-4 mt-3 mt-lg-0">
-<!--                             <div class="footer-brand opacity-8 text-center text-lg-right">
-                                <img src="img/logo.png" alt=""/>
-                            </div> -->
+                            <div class="footer-brand opacity-8 text-center text-lg-right">
+                                <!-- <img src="img/logo.png" alt=""/> -->
+                            </div>
                             <!-- //.footer-brand -->
                         </div>
                         <!-- //.col-lg-4 -->

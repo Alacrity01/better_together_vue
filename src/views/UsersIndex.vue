@@ -21,7 +21,7 @@
                                       <ul class="list-unstyled mt-4 text-medium text-white">
                                           <li><span>First Name: </span>{{ users[selectedIndex].first_name }}</li>
                                           <li><span>Age: </span>{{ users[selectedIndex].age }}</li>
-                                          <li><span>Gender: </span>{{ users[selectedIndex].gender }}</li>
+                                          <li><span>Gender: </span>{{ users[selectedIndex].friendly_gender }}</li>
                                       </ul>
                                       <button v-on:click="previousPerson(selectedIndex)" class="btn btn-black btn-small mt-4 page-scroll shadow">Previous</button>
                                       <button v-on:click="nextPerson(selectedIndex)" class="btn btn-gray btn-small mt-4 page-scroll shadow">Next</button>

@@ -54,13 +54,12 @@
                       <div class="col-6 offset-3 mt-5 mb-5 mt-lg-0 text-light">
                           <form v-on:submit.prevent="submit()">
                               <div class="form-group">
-                                  Name: <input v-model="hangoutName" class="form-control form-control-purple" list="hangouts-names">
+                                  Name: <input v-model="hangoutName" class="form-control form-control-purple" list="hangout-names">
                               </div>
                               <datalist id="hangout-names">
                                 <option v-for="hangout in filterBy(hangouts, hangoutName, 'name')">{{hangout.name}}</option>
                               </datalist>
                               <!-- //.form-group -->
-
                               <div class="form-group">
                                   Address: <input v-model="hangoutAddress" class="form-control form-control-purple" >
                               </div>

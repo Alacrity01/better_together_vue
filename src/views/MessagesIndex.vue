@@ -20,53 +20,51 @@
       </div>
     </div>
   </div> -->
-
-
   <!-- Section - Contact Start -->
-  <section id="" class="messages-index">
-      </div>
+  <section class="messages-index">
       <div class="container">
-        <div class="row justify-content-center mb-3">
-            <div class="col-lg-7 text-center">
-                <h3 class="font-alt letter-spacing-3 mb-0 text-extra-large-2 text-uppercase text-green">Message Thread</h3>      
-                <span class="bg-pink mt-1 mx-auto sep-line-medium-thick"></span>
-            </div>
-            <!-- //.col-lg-7 -->
-        </div>
-      <div class="col-lg-12 mt-3 mt-lg-0">
-        <form v-on:submit.prevent="createMessage()">
-          <div class="form-group">
-            <input name="message" class="form-control form-control-purple required" placeholder="Your Message" v-model="newMessageBody"></input>
+          <div class="row justify-content-center mb-5">
+              <div class="col-lg-7 text-center">
+                  <h3 class="font-alt letter-spacing-3 mb-0 text-extra-large-2 text-uppercase text-green">Message Thread</h3>
+                  <span class="bg-pink mt-1 mx-auto sep-line-medium-thick"></span>
+              </div>
+              <!-- //.col-lg-7 -->
           </div>
-            <!-- //.form-group -->
-
-          <button type="submit" class="btn btn-purple btn-small mt-1 shadow">Send Message <i class="fas fa-paper-plane"></i></button>
-        </form>
-      </div>
-      <!-- //.col-lg-7 -->
-      </div>
-
-
-      <div class="container">
-          
           <!-- //.row -->
           
           <div class="row">
-              <div class="col-lg-5">
-                  <div class="pr-lg-5">
-                    <div v-for="message in messages">
-                      <h4 class="font-alt letter-spacing-1 mb-0 text-medium text-uppercase text-pink"><strong>{{ message.name }}</strong> :</h4><h4 class="text-yellow text-medium"> {{ message.body }}</h4>
-                      <p class="text-white">{{ message.created_at }}</p>
-                    </div>
+              <div class="col-lg-6">
+                  <div v-for="message in messages">
+                    <h4 
+                      class="font-alt letter-spacing-1 mb-0"
+                    >
+                      <strong 
+                        class="text-medium text-uppercase" 
+                        v-bind:class="{'text-pink': currentUserId == message.sender_id, 'text-green': currentUserId != message.sender_id }"
+                      >
+                        {{ message.name }}
+                      </strong>
+                    </h4>
+                    <h4 class="text-yellow text-medium"> {{ message.body }}</h4>
+                    <p class="text-white text-small text-right">{{ message.created_at }}</p>
                   </div>
-                  <!-- //.pr-lg-5 -->
-                  
-
                   <!-- //.pr-lg-5 -->
               </div>
               <!-- //.col-lg-5 -->
+              
+              <div class="col-lg-6 mt-5 mt-lg-0 ">
+                  <form v-on:submit.prevent="createMessage()" class="bg-pink p-4 rounded mt-5">
+                    <div class="form-group">
 
-        </div>
+                      <input class="form-control form-control-purple required" placeholder="Write a Message" v-model="newMessageBody"></input>
+                    </div>
+                      <!-- //.form-group -->
+
+                    <button type="submit" class="btn btn-purple btn-small mt-1 shadow">Send Message <i class="fas fa-paper-plane"></i></button>
+                  </form>
+              </div>
+              <!-- //.col-lg-7 -->
+          </div>
           <!-- //.row -->
       </div>
       <!-- //.container -->
@@ -124,6 +122,8 @@ export default {
       axios.post("/api/messages", params).then(response => {
         this.newMessageBody = "";
         this.messages.unshift(response.data);// (do this with ActionCable instead)  
+      }).catch(errors => {
+        console.log(errors);
       });
     }
   }
